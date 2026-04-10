@@ -29,9 +29,15 @@ export function useGame() {
   useEffect(() => {
     if (status === 'process' && (duckX > FIELD_WIDTH || duckY < 0)) {
       dispatch(endRound());
-      setTimeout(() => dispatch(reset()), 1000);
     }
   }, [duckX, duckY, status, dispatch]);
+
+  useEffect(() => {
+    if (status === 'finish') {
+      const delay = setTimeout(() => dispatch(reset()), 1000);
+      return () => clearTimeout(delay);
+    }
+  }, [status, dispatch]);
 
   const start = () => dispatch(startRound());
 

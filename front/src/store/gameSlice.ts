@@ -33,6 +33,10 @@ const gameSlice = createSlice({
       state.duckX += 5;
       state.duckY -= 3;
     },
+    hitDuck(state) {
+      state.status = 'finish';
+      state.hits++;
+    },
     endRound(state) {
       state.status = 'finish';
     },
@@ -42,5 +46,5 @@ const gameSlice = createSlice({
   },
 });
 
-export const { startRound, move, endRound, reset } = gameSlice.actions;
+export const { startRound, move, hitDuck, endRound, reset } = gameSlice.actions;
 export default gameSlice.reducer;
