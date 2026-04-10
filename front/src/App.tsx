@@ -1,47 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
-import { io } from 'socket.io-client';
-
-const socket = io('http://localhost:3001');
+import Scoreboard from './components/Scoreboard/Scoreboard.tsx';
+import Field from './components/Field/Field.tsx';
+import Duck from './components/Duck/Duck.tsx';
+import { useStartGame } from './hooks/useStartGame.ts';
 
 function App() {
-  const [pong, setPong] = useState<string | null>(null);
-  const [running, setRunning] = useState(false);
-  const countRef = useRef(1);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  useEffect(() => {
-    socket.on('pong', (count: number) => {
-      setPong(`pong ${count}`);
-    });
-
-    return () => {
-      socket.off('pong');
-    };
-  }, []);
-
-  const start = () => {
-    if (intervalRef.current) return;
-    setRunning(true);
-    intervalRef.current = setInterval(() => {
-      socket.emit('ping', countRef.current);
-      countRef.current++;
-    }, 3000);
-  };
-
-  const stop = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-    setRunning(false);
-    countRef.current = 1;
-    setPong(null);
-  };
+  const { pong, running, start, stop } = useStartGame();
 
   return (
     <>
-      <h1>Duck Hunt</h1>
-      <div className="field">{pong}</div>
+      <Scoreboard hits={0} total={0} />
+      <Field>
+        {running && <Duck x={100} y={200} />}
+      </Field>
+      <div>{pong}</div>
       <button onClick={start} disabled={running}>Start</button>
       <button onClick={stop} disabled={!running}>Stop</button>
     </>

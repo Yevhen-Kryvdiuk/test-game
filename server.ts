@@ -12,6 +12,7 @@ io.on('connection', (socket) => {
   console.log('connected', socket.id);
 
   socket.on('ping', (count: number) => {
+    console.log('ping', count)
     socket.emit('pong', count);
   });
 });
