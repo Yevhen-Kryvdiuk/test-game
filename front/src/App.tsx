@@ -1,4 +1,5 @@
 import { useGame } from './hooks/useGame.ts';
+import { useSound } from './hooks/useSound.ts';
 import Scoreboard from './components/Scoreboard/Scoreboard.tsx';
 import Field from './components/Field/Field.tsx';
 import Duck from './components/Duck/Duck.tsx';
@@ -6,6 +7,7 @@ import styles from './App.module.css';
 
 function App() {
   const { status, start } = useGame();
+  useSound(status);
 
   return (
     <>
