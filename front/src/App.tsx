@@ -1,20 +1,20 @@
+import { useGame } from './hooks/useGame.ts';
 import Scoreboard from './components/Scoreboard/Scoreboard.tsx';
 import Field from './components/Field/Field.tsx';
 import Duck from './components/Duck/Duck.tsx';
-import { useStartGame } from './hooks/useStartGame.ts';
 
 function App() {
-  const { pong, running, start, stop } = useStartGame();
+  const { status, start } = useGame();
 
   return (
     <>
-      <Scoreboard hits={0} total={0} />
+      <Scoreboard />
       <Field>
-        {running && <Duck x={100} y={200} />}
+        {status === 'process' && <Duck />}
       </Field>
-      <div>{pong}</div>
-      <button onClick={start} disabled={running}>Start</button>
-      <button onClick={stop} disabled={!running}>Stop</button>
+      <button onClick={start} disabled={status !== 'start'}>
+        Start
+      </button>
     </>
   );
 }

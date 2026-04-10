@@ -1,3 +1,8 @@
+:root {
+  --field-width: 800px;
+  --field-height: 500px;
+}
+
 body {
   margin: 0;
 }

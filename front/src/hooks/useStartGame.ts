@@ -4,14 +4,14 @@ import { io } from 'socket.io-client';
 const socket = io('http://localhost:3001');
 
 export function useStartGame() {
-  const [pong, setPong] = useState<string | null>(null);
+  const [pong, setPong] = useState<number | null>(null);
   const [running, setRunning] = useState(false);
-  const countRef = useRef(1);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const count = useRef(1);
+  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     socket.on('pong', (count: number) => {
-      setPong(`pong ${count}`);
+      setPong(count);
     });
 
     return () => {
@@ -20,21 +20,21 @@ export function useStartGame() {
   }, []);
 
   const start = () => {
-    if (intervalRef.current) return;
+    if (timer.current) return;
     setRunning(true);
-    intervalRef.current = setInterval(() => {
-      socket.emit('ping', countRef.current);
-      countRef.current++;
+    timer.current = setInterval(() => {
+      socket.emit('ping', count.current);
+      count.current++;
     }, 3000);
   };
 
   const stop = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
+    if (timer.current) {
+      clearInterval(timer.current);
+      timer.current = null;
     }
     setRunning(false);
-    countRef.current = 1;
+    count.current = 1;
     setPong(null);
   };
 

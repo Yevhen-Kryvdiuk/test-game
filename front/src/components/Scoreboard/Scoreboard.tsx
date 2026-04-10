@@ -1,12 +1,11 @@
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../store/store.ts';
 import styles from './Scoreboard.module.css';
 
-interface ScoreboardProps {
-  hits: number;
-  total: number;
-}
+function Scoreboard() {
+  const { hits, round } = useSelector((state: RootState) => state.game);
 
-function Scoreboard({ hits, total }: ScoreboardProps) {
-  return <div className={styles.scoreboard}>{hits} / {total}</div>;
+  return <div className={styles.scoreboard}>{hits} / {round}</div>;
 }
 
 export default Scoreboard;

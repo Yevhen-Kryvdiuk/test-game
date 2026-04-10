@@ -1,15 +1,14 @@
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../store/store.ts';
 import styles from './Duck.module.css';
 
-interface DuckProps {
-  x: number;
-  y: number;
-}
+function Duck() {
+  const { duckX, duckY } = useSelector((state: RootState) => state.game);
 
-function Duck({ x, y }: DuckProps) {
   return (
     <div
       className={styles.duck}
-      style={{ left: x, top: y }}
+      style={{ left: duckX, top: duckY }}
     />
   );
 }

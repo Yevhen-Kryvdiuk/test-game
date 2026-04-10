@@ -3,4 +3,5 @@
   height: 80px;
   background: #e8a317;
   position: absolute;
+  transform: translate(-50%, -50%);
 }
