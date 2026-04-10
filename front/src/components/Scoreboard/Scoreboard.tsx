@@ -5,7 +5,7 @@ import styles from './Scoreboard.module.css';
 function Scoreboard() {
   const { hits, round } = useSelector((state: RootState) => state.game);
 
-  return <div className={styles.scoreboard}>{hits} / {round}</div>;
+  return <div className={styles.scoreboard}>HITS: {hits} / ROUNDS: {round}</div>;
 }
 
 export default Scoreboard;

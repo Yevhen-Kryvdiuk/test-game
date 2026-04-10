@@ -2,6 +2,7 @@ import { useGame } from './hooks/useGame.ts';
 import Scoreboard from './components/Scoreboard/Scoreboard.tsx';
 import Field from './components/Field/Field.tsx';
 import Duck from './components/Duck/Duck.tsx';
+import styles from './App.module.css';
 
 function App() {
   const { status, start } = useGame();
@@ -10,9 +11,9 @@ function App() {
     <>
       <Scoreboard />
       <Field>
-        {status === 'process' && <Duck />}
+        {status !== 'start' && <Duck />}
       </Field>
-      <button onClick={start} disabled={status !== 'start'}>
+      <button className={styles.btn} onClick={start} disabled={status !== 'start'}>
         Start
       </button>
     </>

@@ -1,8 +1,33 @@
 :root {
   --field-width: 800px;
   --field-height: 500px;
+
+  --bg-page: #1a1a2e;
+  --bg-sky-light: #87CEEB;
+  --bg-sky-dark: #4A90D9;
+  --bg-grass: #228B22;
+  --bg-grass-hover: #2ea62e;
+  --bg-overlay: rgba(0, 0, 0, 0.7);
+  --shadow-field: rgba(0, 0, 0, 0.5);
+  --text-white: #fff;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  background: var(--bg-page);
+  font-family: 'Press Start 2P', cursive;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

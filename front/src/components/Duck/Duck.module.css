@@ -1,7 +1,8 @@
 .duck {
   width: 80px;
   height: 80px;
-  background: #e8a317;
   position: absolute;
   transform: translate(-50%, -50%);
+  cursor: url('/crosshair.svg') 16 16, crosshair;
+  user-select: none;
 }

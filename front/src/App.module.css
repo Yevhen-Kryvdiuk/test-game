@@ -1,0 +1,26 @@
+.btn {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  color: var(--text-white);
+  background: var(--bg-grass);
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.btn:hover {
+  background: var(--bg-grass-hover);
+}
+
+.btn:active {
+  transform: translateY(2px);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+  transform: none;
+}

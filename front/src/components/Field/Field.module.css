@@ -1,8 +1,10 @@
 .field {
   width: var(--field-width);
   height: var(--field-height);
-  border: 2px solid #333;
   position: relative;
   overflow: hidden;
-  cursor: crosshair;
+  background: linear-gradient(to bottom, var(--bg-sky-light) 0%, var(--bg-sky-dark) 70%, var(--bg-grass) 70%, var(--bg-grass) 100%);
+  border-radius: 4px;
+  box-shadow: 0 0 20px var(--shadow-field);
+  cursor: url('/crosshair.svg') 16 16, crosshair;
 }

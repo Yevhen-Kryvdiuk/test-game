@@ -33,9 +33,12 @@ export function useGame() {
   }, [duckX, duckY, status, dispatch]);
 
   useEffect(() => {
-    if (status === 'finish') {
-      const delay = setTimeout(() => dispatch(reset()), 1000);
+    if (status === 'hit') {
+      const delay = setTimeout(() => dispatch(reset()), 2000);
       return () => clearTimeout(delay);
+    }
+    if (status === 'finish') {
+      dispatch(reset())
     }
   }, [status, dispatch]);
 
