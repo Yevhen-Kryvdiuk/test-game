@@ -10,6 +10,10 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
   console.log('connected', socket.id);
+
+  socket.on('ping', (count: number) => {
+    socket.emit('pong', count);
+  });
 });
 
 server.listen(3001, () => {
