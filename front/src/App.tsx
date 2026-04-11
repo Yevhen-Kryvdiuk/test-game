@@ -6,18 +6,23 @@ import Duck from './components/Duck/Duck.tsx';
 import styles from './App.module.css';
 
 function App() {
-  const { status, start } = useGame();
+  const { status, isRunning, start, stop, shoot } = useGame();
   useSound(status);
 
   return (
     <>
       <Scoreboard />
-      <Field>
+      <Field onShoot={shoot}>
         {status !== 'start' && <Duck />}
       </Field>
-      <button className={styles.btn} onClick={start} disabled={status !== 'start'}>
-        Start
-      </button>
+      <div className={styles.buttons}>
+        <button className={styles.btn} onClick={start} disabled={isRunning}>
+          Start
+        </button>
+        <button className={styles.btn} onClick={stop} disabled={!isRunning}>
+          Stop
+        </button>
+      </div>
     </>
   );
 }

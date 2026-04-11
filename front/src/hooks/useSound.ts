@@ -1,19 +1,13 @@
-import { useEffect, useRef } from 'react';
-import { Howl } from 'howler';
+import { useEffect } from 'react';
+import { quackSound } from '../sounds.ts';
 import type { GameStatus } from '../store/gameSlice.ts';
 
 export function useSound(status: GameStatus) {
-  const quack = useRef(new Howl({ src: ['/sounds/quack.mp3'], loop: true }));
-  const shot = useRef(new Howl({ src: ['/sounds/awp.mp3'], loop: false }));
-
   useEffect(() => {
     if (status === 'process') {
-      quack.current.play();
-    } else if (status === 'hit') {
-      quack.current.stop();
-      shot.current.play();
+      quackSound.play();
     } else {
-      quack.current.stop();
+      quackSound.stop();
     }
   }, [status]);
 }

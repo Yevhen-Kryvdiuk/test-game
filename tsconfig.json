@@ -6,9 +6,9 @@
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
-    "outDir": "dist",
-    "rootDir": "."
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   },
-  "include": ["server.ts"],
+  "include": ["server.ts", "server/**/*"],
   "exclude": ["front", "node_modules"]
 }
